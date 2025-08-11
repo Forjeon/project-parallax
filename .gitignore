@@ -44,3 +44,7 @@
 # Vim temp files
 *.swp
 *.swo
+
+
+# CMake build directory
+build/
