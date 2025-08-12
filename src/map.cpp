@@ -1,3 +1,5 @@
+#include <string>
+
 #include "map.h"
 
 Map::Map(std::string filepath) {
