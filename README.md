@@ -4,6 +4,8 @@
 
 **This project—codenamed Project Parallax until a proper name is decided—is a unique 2nd person metroidvania puzzle thriller, built in C and C++.**
 
+![MIT License badge](https://img.shields.io/badge/License-MIT-76000C)  
+
 ![C++ 17 badge](https://img.shields.io/badge/C++-17-659BD3)
 ![CMake 3.28.3 badge](https://img.shields.io/badge/CMake-3.28.3-F32232)
 
