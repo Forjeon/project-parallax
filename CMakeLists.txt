@@ -11,18 +11,30 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 # Project source structure variables
 set(ProjectParallax_SRC_DIR ${PROJECT_SOURCE_DIR}/src)
 set(ProjectParallax_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
+set(ProjectParallax_HEADER_FILEPATHS
+	${ProjectParallax_INCLUDE_DIR}/map.h
+)
+set(ProjectParallax_SOURCE_FILEPATHS
+	${ProjectParallax_SRC_DIR}/main.cpp
+	${ProjectParallax_SRC_DIR}/map.cpp
+)
 
 # Find ncurses
 find_package(Curses REQUIRED)
 
 # Project main executable
-add_executable(ProjectParallax ${ProjectParallax_SRC_DIR}/main.cpp)
+add_executable(ProjectParallax ${ProjectParallax_SOURCE_FILEPATHS})
 
 # Link to ncurses
 target_link_libraries(ProjectParallax ${CURSES_LIBRARIES})
 
 # Project include directory
-target_include_directories(ProjectParallax PUBLIC ${PROJECT_BINARY_DIR} ${CURSES_INCUDE_DIR})
+target_include_directories(ProjectParallax
+	PUBLIC
+	${PROJECT_BINARY_DIR}
+	${ProjectParallax_INCLUDE_DIR}
+	${CURSES_INCUDE_DIR}
+)
 
 # Transform config.h
 configure_file(${ProjectParallax_INCLUDE_DIR}/config.h.in config.h)
