@@ -10,16 +10,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Project source structure variables
 set(ProjectParallax_SRC_DIR ${PROJECT_SOURCE_DIR}/src)
-set(ProjectParallax_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
+
+set(ProjectParallax_SOURCE_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
+set(ProjectParallax_BINARY_INCLUDE_DIR ${PROJECT_BINARY_DIR}/include)
 
 # Project main executable
 add_executable(ProjectParallax ${ProjectParallax_SRC_DIR}/main.cpp)
 
 # Project include directory
-target_include_directories(ProjectParallax PUBLIC ${ProjectParallax_INCLUDE_DIR})
+target_include_directories(ProjectParallax PUBLIC ${ProjectParallax_BINARY_INCLUDE_DIR})
 
 # Transform config.h
-configure_file(${ProjectParallax_INCLUDE_DIR}/config.h.in ${ProjectParallax_INCLUDE_DIR}/config.h)
+configure_file(${ProjectParallax_SOURCE_INCLUDE_DIR}/config.h.in config.h)
 
 # Include GoogleTest
 #include(FetchContent)

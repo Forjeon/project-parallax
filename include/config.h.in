@@ -1,3 +1,4 @@
+// Project semantic version
 #define ProjectParallax_VERSION_MAJOR @ProjectParallax_VERSION_MAJOR@
 #define ProjectParallax_VERSION_MINOR @ProjectParallax_VERSION_MINOR@
 #define ProjectParallax_VERSION_PATCH @ProjectParallax_VERSION_PATCH@
