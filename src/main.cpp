@@ -7,9 +7,11 @@
 
 #include "config.h"
 #include "map.h"
+#include "player.h"
 
 int main(int argc, char* argv[]) {
 	Map test_map = Map(std::filesystem::path("resources/maps/milestone1.ppmap"));
+	Player player = Player(&test_map);
 
 	// Initialize ncurses
 	initscr();
@@ -26,11 +28,10 @@ int main(int argc, char* argv[]) {
 	refresh();
 	printw("Reading TASKENV27::PERCEPT::DIST_SENS");
 	while (true) {
-		for (int y = 0; y < test_map.get_height(); ++y)
-			for (int x = 0; x < test_map.get_width(); ++x)
-				mvaddch(y + 2, x, test_map.get_tile_char(x, y));
+		player.draw_view();
+
 		refresh();
-		std::this_thread::sleep_for(std::chrono::milliseconds(100));
+		std::this_thread::sleep_for(std::chrono::milliseconds(1000 / ProjectParallax_FRAMERATE));
 	}
 
 	// Clean up and exit

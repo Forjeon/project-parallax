@@ -28,16 +28,24 @@ Map::~Map() {
 }
 
 bool Map::can_move_into(unsigned int x, unsigned int y) {
-	return this->get_tile_char(x, y) == Map::FLOOR;
+	return this->get_tile_char(x, y) == MAP_TILE_CHARS[MapTiles::FLOOR];
 }
 
 unsigned int Map::get_height() {
 	return this->height;
 }
 
+unsigned int Map::get_start_x() {
+	return this->start_x;
+}
+
+unsigned int Map::get_start_y() {
+	return this->start_y;
+}
+
 char Map::get_tile_char(unsigned int x, unsigned int y) {
 	if (x > this->width || y > this->height)
-		return Map::EMPTY;
+		return MAP_TILE_CHARS[MapTiles::EMPTY];
 	return this->tiles[this->width * y + x];
 }
 

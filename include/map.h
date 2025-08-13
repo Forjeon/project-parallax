@@ -4,13 +4,17 @@
 #include <filesystem>
 #include <string>
 
+enum MapTiles {	// Match to MAP_TILE_CHARS
+	CAMERA,	// 'P'
+	DOOR,	// '#'
+	EMPTY,	// ' '
+	FLOOR,	// '_'
+	WALL	// '|'
+};
+
+static const char* MAP_TILE_CHARS = "P# _|";	// Match to MapTiles enum
+
 class Map {
-	static const char CAMERA = 'P';
-	static const char DOOR = '#';
-	static const char EMPTY = ' ';
-	static const char FLOOR = '_';
-	static const char PLAYER = '@';
-	static const char WALL = '|';
 	inline static const std::string FILE_EXTENSION = ".ppmap";
 
 	char* tiles;
@@ -24,6 +28,8 @@ public:
 	~Map();
 	bool can_move_into(unsigned int x, unsigned int y);
 	unsigned int get_height();
+	unsigned int get_start_x();
+	unsigned int get_start_y();
 	char get_tile_char(unsigned int x, unsigned int y);
 	unsigned int get_width();
 };
