@@ -7,6 +7,10 @@
 
 // TODO: template method pattern for this and camera views
 class Player {
+	static const char TILE_CHAR = '@';
+
+	int x;
+	int y;
 	Map* map;
 	std::default_random_engine rand_eng;
 	std::uniform_int_distribution<> sensors_trust_distrib;
