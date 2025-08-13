@@ -10,9 +10,9 @@ Map::Map(std::filesystem::path filepath) {
 	file >> this->start_x;
 	file >> this->start_y;
 	this->tiles = (char*)calloc(this->width * this->height, sizeof(char));
-	for (int y = 0; y < this->height; ++y) {
+	for (unsigned int y = 0; y < this->height; ++y) {
 		file.ignore();
-		for (int x = 0; x < this->width; ++x)
+		for (unsigned int x = 0; x < this->width; ++x)
 			this->tiles[this->width * y + x] = file.get();
 	}
 	/* NOTE: map file format is (top left is origin):
@@ -27,16 +27,20 @@ Map::~Map() {
 	delete[] this->tiles;
 }
 
-bool Map::can_move_into(int x, int y) {
-	// TODO
-	return true;
+bool Map::can_move_into(unsigned int x, unsigned int y) {
+	return this->get_tile_char(x, y) == Map::FLOOR;
 }
 
-int Map::get_height() {
+unsigned int Map::get_height() {
 	return this->height;
 }
 
-char Map::get_tile_char(int x, int y) {
-	// TODO
-	return '%';
+char Map::get_tile_char(unsigned int x, unsigned int y) {
+	if (x > this->width || y > this->height)
+		return Map::EMPTY;
+	return this->tiles[this->width * y + x];
+}
+
+unsigned int Map::get_width() {
+	return this->width;
 }

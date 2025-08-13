@@ -14,18 +14,18 @@ class Map {
 	inline static const std::string FILE_EXTENSION = ".ppmap";
 
 	char* tiles;
-	int width;
-	int height;
-	int start_x;
-	int start_y;
+	unsigned int width;
+	unsigned int height;
+	unsigned int start_x;
+	unsigned int start_y;
 
 public:
 	Map(std::filesystem::path filepath);
 	~Map();
-	bool can_move_into(int x, int y);
-	int get_height();
-	char get_tile_char(int x, int y);
-	int get_width();
+	bool can_move_into(unsigned int x, unsigned int y);
+	unsigned int get_height();
+	char get_tile_char(unsigned int x, unsigned int y);
+	unsigned int get_width();
 };
 
 #endif
