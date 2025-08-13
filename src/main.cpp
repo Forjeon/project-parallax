@@ -1,14 +1,18 @@
 #include <chrono>
+#include <filesystem>
 #include <iostream>
 #include <thread>
 
 #include <ncurses.h>
 
 #include "config.h"
+#include "map.h"
 
 int main(int argc, char* argv[]) {
 	std::cout << "Hello, world! I'm Project Parallax." << std::endl;
 	std::cout << "I am currently version " << ProjectParallax_VERSION_MAJOR << '.' << ProjectParallax_VERSION_MINOR << '.' << ProjectParallax_VERSION_PATCH << '.' << std::endl;
+
+	Map test_map = Map(std::filesystem::path("resources/maps/milestone1.ppmap"));
 
 	// Initialize ncurses
 	initscr();

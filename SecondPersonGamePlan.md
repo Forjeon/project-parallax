@@ -80,6 +80,7 @@ The development is broken down into small, achievable milestones. Each milestone
 
 These are ideas to consider *after* completing the first three milestones.
 
+*	**Radial Ray Sensors** The robot's sensors are modeled as simple distance sensors which operate radially around the robot. Sensor lies now block all map areas behind them from the perspective of the robot, and certain radar arcs may fail altogether from time to time.
 *   **"Stabilize Sensors" Power-up:** An item the robot can find that reduces the "noise" percentage on its personal map view, making it more reliable.
 *   **Mobile Enemies:** Add simple enemies (`E`) that patrol on a set path.
 *   **Camera Jacking:** The core idea. Allow the player to jack into the view of mobile enemies, not just static cameras. This becomes the primary way to navigate complex levels.

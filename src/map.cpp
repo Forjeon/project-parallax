@@ -1,16 +1,26 @@
-#include <string>
+#include <filesystem>
+#include <fstream>
 
 #include "map.h"
 
-Map::Map(std::string filepath) {
-	// TODO: must be '.ppmap' file
+Map::Map(std::filesystem::path filepath) {
+	std::ifstream file = std::ifstream(filepath);
+	file >> this->width;
+	file >> this->height;
+	file >> this->start_x;
+	file >> this->start_y;
+	this->tiles = (char*)calloc(this->width * this->height, sizeof(char));
+	for (int y = 0; y < this->height; ++y) {
+		file.ignore();
+		for (int x = 0; x < this->width; ++x)
+			this->tiles[this->width * y + x] = file.get();
+	}
 	/* NOTE: map file format is (top left is origin):
 	   <width> <height>
 	   <player start x> <player start y>
 	   <map row tiles>
 	   ...
 	*/
-	// TODO: calloc this->tiles
 }
 
 Map::~Map() {
