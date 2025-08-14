@@ -3,6 +3,7 @@
 
 #include <filesystem>
 #include <string>
+#include <vector>
 
 enum MapTiles {	// Match to MAP_TILE_CHARS
 	CAMERA,	// 'P'
@@ -23,11 +24,15 @@ class Map {
 	unsigned int height;
 	unsigned int start_x;
 	unsigned int start_y;
+	std::vector<unsigned int> camera_coords;
 
 public:
 	Map(std::filesystem::path filepath);
 	~Map();
 	bool can_move_into(unsigned int x, unsigned int y);
+	size_t get_camera_count();
+	unsigned int get_camera_x(unsigned int id);
+	unsigned int get_camera_y(unsigned int id);
 	unsigned int get_height();
 	unsigned int get_start_x();
 	unsigned int get_start_y();

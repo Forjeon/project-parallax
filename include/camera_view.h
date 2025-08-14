@@ -6,6 +6,8 @@
 #include "i_robot_view.h"
 
 class CameraView : public IRobotView {
+	static const unsigned int FOV_ANGLE = 90;
+
 	const char* NAME_PREFIX = "SEC_CAM-";
 	const std::string NAME;
 	unsigned int x;

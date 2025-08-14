@@ -12,8 +12,12 @@ Map::Map(std::filesystem::path filepath) {
 	this->tiles = (char*)calloc(this->width * this->height, sizeof(char));
 	for (unsigned int y = 0; y < this->height; ++y) {
 		file.ignore();
-		for (unsigned int x = 0; x < this->width; ++x)
-			this->tiles[this->width * y + x] = file.get();
+		for (unsigned int x = 0; x < this->width; ++x) {
+			char tile = file.get();
+			this->tiles[this->width * y + x] = tile;
+			
+			// Track camera positions
+			// TODO
 	}
 	/* NOTE: map file format is (top left is origin):
 	   <width> <height>
@@ -29,6 +33,18 @@ Map::~Map() {
 
 bool Map::can_move_into(unsigned int x, unsigned int y) {
 	return this->get_tile_char(x, y) == MAP_TILE_CHARS[MapTiles::FLOOR];
+}
+
+size_t Map::get_camera_count() {
+	return this->camera_coords.size() / 2;
+}
+
+unsigned int Map::get_camera_x(unsigned int id) {
+	// TODO
+}
+
+unsigned int Map::get_camera_y(unsigned int id) {
+	// TODO
 }
 
 unsigned int Map::get_height() {

@@ -32,6 +32,9 @@ void move_player(int in_key, Map& map, Player& player) {
 		case 'd':
 			++new_x;
 			break;
+
+		default:
+			ungetch(in_key);
 	}
 
 	if (map.can_move_into(new_x, new_y)) {
