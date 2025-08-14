@@ -9,10 +9,11 @@ enum MapTiles {	// Match to MAP_TILE_CHARS
 	DOOR,	// '#'
 	EMPTY,	// ' '
 	FLOOR,	// '_'
+	PLAYER,	// '@'
 	WALL	// '|'
 };
 
-static const char* MAP_TILE_CHARS = "P# _|";	// Match to MapTiles enum
+static const char* MAP_TILE_CHARS = "P# _@|";	// Match to MapTiles enum
 
 class Map {
 	inline static const std::string FILE_EXTENSION = ".ppmap";

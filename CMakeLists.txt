@@ -11,14 +11,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 # Project source structure variables
 set(ProjectParallax_SRC_DIR ${PROJECT_SOURCE_DIR}/src)
 set(ProjectParallax_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
-set(ProjectParallax_HEADER_FILEPATHS
-	${ProjectParallax_INCLUDE_DIR}/map.h
-	${ProjectParallax_INCLUDE_DIR}/player.h
-)
 set(ProjectParallax_SOURCE_FILEPATHS
 	${ProjectParallax_SRC_DIR}/main.cpp
+	${ProjectParallax_SRC_DIR}/dist_sensors_view.cpp
 	${ProjectParallax_SRC_DIR}/map.cpp
-	${ProjectParallax_SRC_DIR}/player.cpp
 )
 
 # Find ncurses
