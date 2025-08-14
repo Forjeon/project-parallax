@@ -1,4 +1,5 @@
 #include <random>
+#include <string>
 
 #include "dist_sensors_view.h"
 #include "map.h"

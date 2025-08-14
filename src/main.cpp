@@ -6,6 +6,7 @@
 #include <ncurses.h>
 
 #include "config.h"
+#include "camera_view.h"
 #include "dist_sensors_view.h"
 #include "i_robot_view.h"
 #include "map.h"
@@ -63,6 +64,7 @@ int main(int argc, char* argv[]) {
 	Map map = Map(std::filesystem::path("resources/maps/milestone1.ppmap"));
 	Player player{map.get_start_x(), map.get_start_y()};
 	DistSensorsView sensors_view{};
+	CameraView test_cam_view{0, 0, 0};
 
 	// Initialize ncurses
 	initscr();
@@ -84,7 +86,7 @@ int main(int argc, char* argv[]) {
 		move_player(getch(), map, player);
 
 		// Render frame
-		render_frame(sensors_view, map, player);
+		render_frame(test_cam_view, map, player);
 		refresh();
 		std::this_thread::sleep_for(std::chrono::milliseconds(1000 / ProjectParallax_FRAMERATE));
 	}

@@ -1,6 +1,8 @@
 #ifndef PROJECT_PARALLAX_I_ROBOT_VIEW_H
 #define PROJECT_PARALLAX_I_ROBOT_VIEW_H
 
+#include <string>
+
 #include "map.h"
 
 class IRobotView {

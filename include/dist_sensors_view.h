@@ -2,6 +2,7 @@
 #define PROJECT_PARALLAX_DIST_SENSORS_H
 
 #include <random>
+#include <string>
 
 #include "i_robot_view.h"
 #include "map.h"
