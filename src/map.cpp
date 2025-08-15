@@ -3,7 +3,7 @@
 
 #include "map.h"
 
-Map::Map(std::filesystem::path filepath) {
+Map::Map(std::filesystem::path filepath) : camera_coords() {
 	std::ifstream file = std::ifstream(filepath);
 	file >> this->width;
 	file >> this->height;
@@ -17,7 +17,11 @@ Map::Map(std::filesystem::path filepath) {
 			this->tiles[this->width * y + x] = tile;
 			
 			// Track camera positions
-			// TODO
+			if (tile == MAP_TILE_CHARS[MapTiles::CAMERA]) {
+				this->camera_coords.push_back(x);
+				this->camera_coords.push_back(y);
+			}
+		}
 	}
 	/* NOTE: map file format is (top left is origin):
 	   <width> <height>
@@ -40,11 +44,15 @@ size_t Map::get_camera_count() {
 }
 
 unsigned int Map::get_camera_x(unsigned int id) {
-	// TODO
+	if (id < this->get_camera_count())
+		return this->camera_coords[id * 2];
+	return 0;
 }
 
 unsigned int Map::get_camera_y(unsigned int id) {
-	// TODO
+	if (id < this->get_camera_count())
+		return this->camera_coords[id * 2 + 1];
+	return 0;
 }
 
 unsigned int Map::get_height() {

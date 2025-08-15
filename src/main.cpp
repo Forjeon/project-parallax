@@ -2,6 +2,7 @@
 #include <filesystem>
 #include <iostream>
 #include <thread>
+#include <vector>
 
 #include <ncurses.h>
 
@@ -12,11 +13,18 @@
 #include "map.h"
 #include "player.h"
 
+size_t change_view(int in_key, size_t curr_view, const std::vector<IRobotView*>& views) {
+	size_t new_view = in_key - '0';
+	if (new_view < views.size())
+		return new_view;
+	return curr_view;
+}
+
 void move_player(int in_key, Map& map, Player& player) {
 	unsigned int new_x = player.x;
 	unsigned int new_y = player.y;
 
-	switch(in_key) {
+	switch (in_key) {
 		case 'w':
 			--new_y;
 			break;
@@ -32,9 +40,6 @@ void move_player(int in_key, Map& map, Player& player) {
 		case 'd':
 			++new_x;
 			break;
-
-		default:
-			ungetch(in_key);
 	}
 
 	if (map.can_move_into(new_x, new_y)) {
@@ -66,8 +71,11 @@ int main(int argc, char* argv[]) {
 	// Initialize game objects
 	Map map = Map(std::filesystem::path("resources/maps/milestone1.ppmap"));
 	Player player{map.get_start_x(), map.get_start_y()};
-	DistSensorsView sensors_view{};
-	CameraView test_cam_view{0, 0, 0};
+	std::vector<IRobotView*> views{};
+	views.push_back(new DistSensorsView());
+	for (int i = 0; i < map.get_camera_count(); ++i)
+		views.push_back(new CameraView(i, map.get_camera_x(i), map.get_camera_y(i)));
+	size_t curr_view = 0;
 
 	// Initialize ncurses
 	initscr();
@@ -86,10 +94,12 @@ int main(int argc, char* argv[]) {
 	printw("Reading TASKENV27::PERCEPT::DIST_SENS");
 	while (true) {
 		// Handle input
-		move_player(getch(), map, player);
+		int in_key = getch();
+		move_player(in_key, map, player);
+		curr_view = change_view(in_key, curr_view, views);
 
 		// Render frame
-		render_frame(test_cam_view, map, player);
+		render_frame(*views[curr_view], map, player);
 		refresh();
 		std::this_thread::sleep_for(std::chrono::milliseconds(1000 / ProjectParallax_FRAMERATE));
 	}
